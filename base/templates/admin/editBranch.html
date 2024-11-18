@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>MoodEchoInsight</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="../../static/adminResources/image/favicon.png">
+    <!-- Custom Stylesheet -->
+    <link href="../../static/adminResources/css/style.css" rel="stylesheet">
+    <script src="../../static/adminResources/js/modernizr-3.6.0.min.js"></script>
+</head>
+
+<body class="v-light vertical-nav fix-header fix-sidebar">
+<div id="main-wrapper">
+    <!-- header -->
+    {% include 'admin/header.html' %}
+
+
+    <!-- #/ header -->
+    <!-- sidebar -->
+    {% include 'admin/menu.html' %}
+
+
+    <!-- #/ sidebar -->
+    <!-- content body -->
+    <div class="content-body">
+        <div class="container">
+            <div class="row page-titles">
+                <div class="col p-0">
+                    <h4>Add Branch</h4>
+                </div>
+                <div class="col p-0">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a
+                                href="javascript:void(0)">From</a>
+                        </li>
+                        <li class="breadcrumb-item active">Update Branch</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-validation">
+                                <form class="form-validate"
+                                      action="/admin/update_branch"
+                                      method="post">
+                                    <input type="hidden" name="branchId"
+                                           value="{{ branch_vo_list[0] ['branch_id'] }}"><br>
+                                    <div class="form-group row">
+                                        <label class="col-lg-4
+                                            col-form-label"
+                                               for="val-username">Branch
+                                            Name<span
+                                                    class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   id="val-username"
+                                                   name="branchName"
+                                                   value="{{ branch_vo_list[0] ['branch_name'] }}"
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-4
+                                            col-form-label"
+                                               for="val-email">Branch Address
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control
+                                            h-150px" rows="6"
+                                                   name="branchAddress"
+                                                   id="comment"
+                                                   value="{{ branch_vo_list[0] ['branch_address'] }}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label"
+                                               for="val-phoneus">Branch Contact
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   id="val-phoneus"
+                                                   name="branchContact"
+                                                   value="{{ branch_vo_list[0] ['branch_contact'] }}"
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-4
+                                            col-form-label"
+                                               for="val-username">Branch
+                                            Manager<span
+                                                    class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   id="val-username"
+                                                   value="{{ branch_vo_list[0] ['branch_manager'] }}"
+                                                   name="branchManager"
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-lg-8 ml-auto">
+                                            <button type="submit"
+                                                    class="btn btn-primary">
+                                                Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #/ container -->
+    </div>
+    <!-- #/ content body -->
+    <!-- footer -->
+    {% include 'admin/footer.html' %}
+
+
+    <!-- #/ footer -->
+</div>
+<!-- Common JS -->
+<script src="../../static/adminResources/js/common.min.js"></script>
+<!-- Custom script -->
+<script src="../../static/adminResources/js/custom.min.js"></script>
+<!-- Form Validation -->
+<script src="../../static/adminResources/js/jquery.validate.min.js"></script>
+<script src="../../static/adminResources/js/jquery.validate-init.js"></script>
+</body>
+
+</html>

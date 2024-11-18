@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Moodechoinsight</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="../../static/adminResources/image/favicon.png">
+    <link href="../../static/adminResources/css/dataTables.bootstrap4.min.css"
+          rel="stylesheet">
+    <!-- Custom Stylesheet -->
+    <link href="../../static/adminResources/css/style.css" rel="stylesheet">
+    <script src="../../static/adminResources/js/modernizr-3.6.0.min.js"></script>
+</head>
+
+<body class="v-light vertical-nav fix-header fix-sidebar">
+<div id="main-wrapper">
+    <!-- header -->
+
+    {% include 'admin/header.html' %}
+
+    <!-- #/ header -->
+    <!-- sidebar -->
+
+    {% include 'admin/menu.html' %}
+
+
+    <!-- #/ sidebar -->
+    <!-- content body -->
+    <div class="content-body">
+        <div class="container-fluid
+
+">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header"
+                             style="background: linear-gradient(90deg, #9068be, transparent);">
+                            <h4 class="card-title m-0 text-white">
+                                Detection Details
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped
+                                table-bordered zero-configuration"
+                                       name="/admin/view_detection">
+                                    <thead>
+                                    <tr>
+                                        <th>Branch</th>
+                                        <th>Camera</th>
+                                        <th>Happy</th>
+                                        <th>Sad</th>
+                                        <th>Angry</th>
+                                        <th>Neutral</th>
+                                        <th>Disgust</th>
+                                        <th>Surprise</th>
+                                        <th>Fear</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        {% for detection in
+                                        detection_vo_list %}
+                                            <tr>
+                                                <td>{{detection[0]["branch_name"] }}</td>
+                                                <td>{{detection[1]["camera_name"]}}</td>
+                                                <td>{{detection[2]["happy_face"] }}</td>
+                                                <td>{{ detection[2]['sad_face'] }}</td>
+                                                <td>{{ detection[2]['angry_face'] }}</td>
+                                                <td>{{ detection[2]['fear_face'] }}</td>
+                                                <td>{{ detection[2]['neutral_face'] }}</td>
+                                                <td>{{ detection[2]['surprise_face'] }}</td>
+                                                <td>{{ detection[2]['disgust_face'] }}</td>
+                                                <td><a href="/admin/delete_detection?detectionId={{ detection[2]['detection_id'] }}">
+                                                    <i class="fa fa-trash lead ml-2 text-danger"></i></a>
+                                                </td>
+
+                                            </tr>
+                                        {% endfor %}
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #/ container -->
+    </div>
+    <!-- #/ content body -->
+    <!-- footer -->
+
+    {% include 'admin/footer.html' %}
+
+
+    <!-- #/ footer -->
+</div>
+<!-- Common JS -->
+<script src="../../static/adminResources/js/common.min.js"></script>
+<!-- Custom script -->
+<script src="../../static/adminResources/js/custom.min.js"></script>
+<script src="../../static/adminResources/js/jquery.dataTables.min.js"></script>
+<script src="../../static/adminResources/js/dataTables.bootstrap4.min.js"></script>
+<script src="../../static/adminResources/js/datatable-basic.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>MoodEchoInsight</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="../../static/adminResources/image/favicon.png">
+    <!-- Custom Stylesheet -->
+    <link href="../../static/adminResources/css/style.css" rel="stylesheet">
+    <script src="../../static/adminResources/js/modernizr-3.6.0.min.js"></script>
+    <script type="text/javascript">
+
+        function loadCameraDetection() {
+            var detecionBranchId = document.getElementById("detectionBranchId");
+            var detectionCameraId = document.getElementById("detectionCameraId");
+
+
+            detectionCameraId.innerHTML = "";
+
+            var ajax = new XMLHttpRequest();
+
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4) {
+
+                    var json = JSON.parse(ajax.responseText);
+
+                    for (var i = 0; i < json.length; i++) {
+
+                        var option = document.createElement("option");
+                        option.value = json[i].camera_id;
+                        option.text = json[i].camera_name;
+                        detectionCameraId.options.add(option);
+                    }
+                }
+            };
+
+            ajax.open("get", "/admin/ajax_detection?detectionBranchId" + "=" +
+                detecionBranchId.value, true);
+            ajax.send();
+
+        }
+
+    </script>
+</head>
+
+<body class="v-light vertical-nav fix-header fix-sidebar">
+<div id="main-wrapper">
+    <!-- header -->
+
+    {% include 'admin/header.html' %}
+
+
+    <!-- #/ header -->
+    <!-- sidebar -->
+
+    {% include 'admin/menu.html' %}
+
+
+    <!-- #/ sidebar -->
+    <!-- content body -->
+    <div class="content-body">
+        <div class="container">
+            <div class="row page-titles">
+                <div class="col p-0">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active">Detection</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-validation">
+                                <form class="form-valide"
+                                      action="/admin/insert_detection"
+                                      method = "post">
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label"
+                                               for="val-skill">Select Camera
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <select class="form-control form-control-lg"
+                                                name="detectionBranchId"
+                                                id="detectionBranchId"
+                                                onchange="loadCameraDetection()">
+                                            <option value="none">Select
+                                                Branch
+                                            </option>
+
+                                            {% for row in branch_vo_list %}
+
+                                                <option value="{{
+
+                                                        row['branch_id'] }}">
+                                                    {{ row['branch_name'] }}</option>
+
+                                            {% endfor %}
+
+
+                                        </select>
+                                    </div>
+
+                                    {#                                    <div class="form-group">#}
+                                    {#                                        <select class="form-control form-control-lg"#}
+                                    {#                                                id="camera_id"#}
+                                    {#                                                name="detectionBranchId">#}
+                                    {#                                            <option selected value="none">#}
+                                    {#                                                Select camera#}
+                                    {#                                            </option>#}
+                                    {#                                            {% for camera in#}
+                                    {#                                                camera_vo_list %}#}
+                                    {##}
+                                    {#                                                <option value="{{ row[2]['camera_id'] }}">{{ row[2]['camera_name'] }}</option>#}
+                                    {##}
+                                    {#                                            {% endfor %}#}
+                                    {#                                        </select>#}
+                                    {#                                    </div>#}
+
+                                    <div class="form-group">
+                                        <select class="form-control form-control-lg"
+                                                name="detectionCameraId"
+                                                id="detectionCameraId">
+
+                                            <option value="none">Select
+                                                Camera
+                                            </option>
+
+
+                                        </select>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <div class="col-lg-8 ml-auto">
+                                            <button type="submit"
+                                                    class="btn btn-primary">
+                                                Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #/ container -->
+    </div>
+    <!-- #/ content body -->
+    <!-- footer -->
+
+    {% include 'admin/footer.html' %}
+
+
+    <!-- #/ footer -->
+</div>
+<!-- Common JS -->
+<script src="../../static/adminResources/js/common.min.js"></script>
+<!-- Custom script -->
+<script src="../../static/adminResources/js/custom.min.js"></script>
+<!-- Form Validation -->
+<script src="../../static/adminResources/js/jquery.validate.min.js"></script>
+<script src="../../static/adminResources/js/jquery.validate-init.js"></script>
+</body>
+
+</html>
